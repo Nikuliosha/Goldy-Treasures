@@ -2,11 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Inventory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public List<string> collectedItems = new List<string>();
-    public int lst_size;
+    public  List<string> collectedItems = new List<string>();
+    public  int lst_size;
+    public static Inventory Instance;
+    private void Start()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 
 
     public void AddToInvetory(Collectible collectible)
